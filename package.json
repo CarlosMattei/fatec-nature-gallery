@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.4.1",
     "canvas-confetti": "^1.9.4",
     "gsap": "^3.15.0",
+    "lightbox.js-react": "^1.7.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-icons": "^5.6.0",

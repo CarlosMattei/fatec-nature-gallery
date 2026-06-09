@@ -29,6 +29,11 @@
     gap: 2.4rem;
 }
 
+.photoFrame--primary img {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
 .galleryPhotoColumn {
     position: relative;
     min-height: 34rem;
