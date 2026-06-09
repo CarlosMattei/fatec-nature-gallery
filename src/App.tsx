@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
-import "./App.css";
 import Map from "./components/mapView";
 import Gallery from "./pages/gallery";
 import Contact from "./pages/contact";
 import heroImage from "./assets/hero.png";
+import "./styles/navigation.css";
 
 type MenuItem = {
   label: string;

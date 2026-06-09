@@ -1,130 +1,151 @@
-import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
-import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
-import { IoArrowForwardOutline, IoMailOutline } from "react-icons/io5";
+import "../styles/contact.css";
+import { useState } from "react";
+import type { FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 
-const contactEmail = "contato@fatec-nature-gallery.com";
+function Contact() {
+  const [sending, setSending] = useState(false);
 
-const socialLinks = [
-  {
-    label: "GitHub",
-    description: "Código e projetos",
-    href: "https://github.com",
-    Icon: FaGithub,
-  },
-  {
-    label: "LinkedIn",
-    description: "Rede profissional",
-    href: "https://www.linkedin.com",
-    Icon: FaLinkedinIn,
-  },
-  {
-    label: "Instagram",
-    description: "Bastidores e updates",
-    href: "https://www.instagram.com",
-    Icon: FaInstagram,
-  },
-];
-
-export default function Contact() {
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const subject = encodeURIComponent("Contato via Fatec Nature Gallery");
-    const body = encodeURIComponent(
-      `Meu e-mail para retorno: ${email || "preencha o campo acima"}\n\nMensagem:\n`,
-    );
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-  };
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name,
+          email,
+          message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      );
+
+      alert("Mensagem enviada com sucesso!");
+      form.reset();
+    } catch (error) {
+      console.error("Erro ao enviar e-mail:", error);
+      alert(
+        "Não foi possível enviar a mensagem. Tente novamente mais tarde.",
+      );
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <main className="contactPage">
       <section className="contactStage">
         <div className="contactHeader">
-          <h1>Vamos Criar algo juntos?</h1>
+          <h1>Vamos criar algo juntos?</h1>
+          <p>
+            Tem um projeto em mente? Adoraria ouvir sobre ele. Mande uma
+            mensagem e retorno em breve.
+          </p>
         </div>
 
-        <div className="contactGrid">
-          <form
-            className="contactCard contactCard--email"
-            onSubmit={handleSubmit}
-          >
-            <div className="contactCard__top">
-              <span className="contactCard__eyebrow">Email</span>
-              <h2>Escreva seu contato.</h2>
-              <p>
-                Informe seu endereço para abrir a sua aplicação de e-mail com a
-                mensagem pronta.
-              </p>
-            </div>
+        <div className="grid">
+          <div className="contactForm">
+            <form onSubmit={handleSubmit}>
+              <h2>Entre em contato</h2>
 
-            <label className="contactField" htmlFor="contact-email">
-              <span className="contactField__icon" aria-hidden="true">
-                <IoMailOutline size={22} />
-              </span>
-              <input
-                id="contact-email"
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="seuemail@dominio.com"
-                aria-label="Seu e-mail"
-                autoComplete="email"
-              />
-            </label>
-
-            <button type="submit" className="contactPrimary">
-              Abrir e-mail
-              <IoArrowForwardOutline size={20} stroke="#fff" />
-            </button>
-          </form>
-
-          <aside className="contactCard contactCard--social">
-            <div className="contactCard__top">
-              <span className="contactCard__eyebrow">Redes sociais</span>
-              <h2>Atalhos rápidos.</h2>
-              <p>
-                Os botões abaixo seguem uma interação sutil, com hover em
-                camadas para destacar cada rede.
-              </p>
-            </div>
-
-            <div
-              className="contactSocialList"
-              aria-label="Links para redes sociais"
-            >
-              {socialLinks.map(({ label, description, href, Icon }) => (
-                <a
-                  key={label}
-                  className="contactSocial"
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Abrir ${label}`}
-                >
-                  <span className="contactSocial__icon" aria-hidden="true">
-                    <Icon size={22} />
-                  </span>
-
-                  <span className="contactSocial__text">
-                    <strong>{label}</strong>
-                    <small>{description}</small>
-                  </span>
-
-                  <IoArrowForwardOutline
-                    className="contactSocial__arrow"
-                    size={18}
-                    aria-hidden="true"
+              <div className="formGroup">
+                <div className="field">
+                  <label htmlFor="name">Nome</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Seu nome"
+                    autoComplete="name"
+                    required
                   />
-                </a>
-              ))}
-            </div>
-          </aside>
+                </div>
+
+                <div className="field">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    autoComplete="email"
+                    required
+                  />
+                </div>
+
+                <div className="field">
+                  <label htmlFor="message">Mensagem</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    placeholder="Conte sobre seu projeto..."
+                    required
+                  />
+                </div>
+              </div>
+
+              <button type="submit" disabled={sending}>
+                {sending ? "Enviando..." : "Enviar mensagem"}
+              </button>
+            </form>
+          </div>
+
+          <div className="bentoGrid" role="list">
+            <a
+              href="https://www.linkedin.com/in/carlos-henrique-b46826340"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bentoItem item-0"
+              aria-label="LinkedIn"
+            >
+              <div className="IconContainer">
+                <BsLinkedin aria-hidden="true" />
+              </div>
+              <h3>LinkedIn</h3>
+            </a>
+
+            <a
+              href="https://github.com/CarlosMattei"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bentoItem item-1"
+              aria-label="GitHub"
+            >
+              <div className="IconContainer">
+                <BsGithub aria-hidden="true" />
+              </div>
+              <h3>GitHub</h3>
+            </a>
+
+            <a
+              href="https://www.instagram.com/carlosmattei.16?igsh=c2czZTZqOWg3aWM="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bentoItem item-2"
+              aria-label="Instagram"
+            >
+              <div className="IconContainer">
+                <BsInstagram aria-hidden="true" />
+              </div>
+              <h3>Instagram</h3>
+            </a>
+          </div>
         </div>
       </section>
     </main>
   );
 }
+
+export default Contact;

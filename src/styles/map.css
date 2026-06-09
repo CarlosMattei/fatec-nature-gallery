@@ -1,0 +1,154 @@
+.viewport {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.map-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.map-container svg {
+    max-width: none;
+    max-height: none;
+    will-change: transform;
+}
+
+#pin_auditorio,
+#pin_campoAberto,
+#pin_ilhaPrincipal,
+#pin_jardimDaSecretaria,
+#pin_lateral,
+#pin_aHorta,
+#pin_aFatec,
+#pin_atrasDaFatec {
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+    pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+}
+
+.pin-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.pin-dimmed {
+    opacity: 0.2 !important;
+    transition: opacity 0.3s ease;
+}
+
+#label_auditorio,
+#label_campoAberto,
+#label_ilhaPrincipal,
+#label_jardimDaSecretaria,
+#label_lateral,
+#label_aHorta,
+#label_aFatec,
+#label_atrasDaFatec {
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    cursor: default;
+}
+
+@keyframes labelAppear {
+    0% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.label-active {
+    transform: translateY(-10px);
+    animation: labelAppear 0.3s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.label-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.label-active:hover {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    transition: filter 0.2s ease;
+}
+
+@media (max-width: 1024px) {
+    .map-container {
+        touch-action: pan-x pan-y pinch-zoom;
+    }
+
+    .map-container svg {
+        transform-origin: center center;
+    }
+
+    [id^="pin_"],
+    [id^="label_"] {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 768px) {
+    .viewport {
+        height: 100dvh;
+    }
+
+    .map-container {
+        touch-action: none;
+    }
+
+    [id^="label_"] text {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    [id^="label_"] text {
+        font-size: 12px !important;
+    }
+
+    [id^="pin_"],
+    [id^="label_"] {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .map-container {
+        height: 100vh;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .map-container {
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+    }
+}

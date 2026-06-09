@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MapaSvg from '../Fatec.svg?react';
 import photosData from '../fotos/data.json';
+import '../styles/map.css';
 
 type CameraState = {
     x: number;

@@ -18,3 +18,11 @@ body {
     font-size: 1rem;
     color: var(--text);
 }
+
+html {
+    background-color: var(--background-secundary);
+}
+
+body {
+    min-height: 100vh;
+}

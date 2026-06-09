@@ -4,6 +4,7 @@ import { IoChevronBackOutline, IoChevronForwardOutline, IoHeartOutline, IoHeart 
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
 import photosData from '../fotos/data.json'
+import '../styles/gallery.css'
 
 // Dynamically import all images from the fotos directory
 const images = import.meta.glob<string>('../fotos/**/*.jpg', { eager: true, import: 'default' });
@@ -252,4 +253,3 @@ export default function Gallery() {
     </main>
   )
 }
-

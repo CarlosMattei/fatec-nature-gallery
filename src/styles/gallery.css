@@ -1,0 +1,266 @@
+.galleryPage {
+    min-height: 100dvh;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(240, 224, 202, 0.78) 0%,
+            rgba(216, 198, 170, 0.82) 100%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(168, 206, 161, 0.85) 0%,
+            rgba(243, 232, 209, 0.8) 48%,
+            rgba(216, 197, 167, 0.9) 100%
+        );
+    overflow: hidden;
+}
+
+.galleryStage {
+    min-height: 100dvh;
+    padding: 6.5rem 1.25rem 1.25rem;
+}
+
+.galleryContent {
+    width: min(100%, 1200px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.galleryPhotoColumn {
+    position: relative;
+    min-height: 34rem;
+}
+
+.photoFrame {
+    position: absolute;
+    margin: 0;
+    background: #fff;
+    border-radius: 0.85rem;
+    padding: 0.55rem;
+    box-shadow: 0 16px 20px rgba(108, 96, 75, 0.28);
+}
+
+.photoFrame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.55rem;
+}
+
+.photoFrame--primary {
+    width: min(100%, 43rem);
+    aspect-ratio: 1.16 / 0.85;
+    left: 0.2rem;
+    top: 1.55rem;
+    transform: rotate(-4deg);
+    z-index: 2;
+}
+
+.photoFrame--secondary {
+    width: min(100%, 29rem);
+    aspect-ratio: 1.16 / 0.85;
+    left: 2.8rem;
+    bottom: -1.7rem;
+    opacity: 0.27;
+    filter: blur(2px);
+    transform: rotate(0.5deg);
+    z-index: 1;
+}
+
+.galleryAside {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-self: center;
+    padding-top: 1rem;
+}
+
+.backLink {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.68rem 0.95rem;
+    border-radius: 0.55rem;
+    background: var(--background-base);
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 700;
+    box-shadow: 0 2px 0 rgba(185, 163, 143, 0.55);
+}
+
+.backLink span {
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.infoCard {
+    width: 100%;
+    padding: 1.15rem 1.05rem 1rem;
+    border-radius: 0.65rem;
+    background: var(--background-base);
+    box-shadow: 0 2px 0 rgba(185, 163, 143, 0.55);
+}
+
+.infoCard h1 {
+    margin-bottom: 0.65rem;
+    color: var(--primary);
+    font-size: 3rem;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+}
+
+.infoCard p {
+    margin-bottom: 0.85rem;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+.locationTag {
+    display: inline-flex;
+    margin-bottom: 0.6rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(0, 161, 126, 0.12);
+    color: var(--primary);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.likeButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    background: #a42e2eff;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.likeButton:hover {
+    transform: scale(1.1);
+}
+
+.likeButton span {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.previous,
+.next {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.68rem 0.95rem;
+    border-radius: 0.55rem;
+    background: var(--background-base);
+    color: var(--primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 0 rgba(185, 163, 143, 0.55);
+    transition: 0.2s ease;
+}
+
+.previous:hover,
+.next:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .galleryStage {
+        padding-top: 5.75rem;
+    }
+
+    .galleryContent {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .galleryPhotoColumn {
+        min-height: 28rem;
+    }
+
+    .photoFrame--primary {
+        width: min(100%, 34rem);
+        left: 50%;
+        transform: translateX(-50%) rotate(-4deg);
+    }
+
+    .photoFrame--secondary {
+        width: min(72%, 24rem);
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -1rem;
+    }
+
+    .galleryAside {
+        width: min(100%, 28rem);
+        padding-top: 0;
+    }
+
+    .infoCard {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .galleryStage {
+        padding-inline: 0.75rem;
+    }
+
+    .galleryPhotoColumn {
+        min-height: 23rem;
+    }
+
+    .photoFrame {
+        padding: 0.42rem;
+    }
+
+    .photoFrame--primary {
+        width: min(100%, 22rem);
+        top: 1rem;
+    }
+
+    .photoFrame--secondary {
+        width: min(76%, 18rem);
+        bottom: -0.65rem;
+    }
+
+    .backLink {
+        font-size: 0.95rem;
+    }
+
+    .infoCard h1 {
+        font-size: 2.4rem;
+    }
+
+    .infoCard p {
+        font-size: 1.05rem;
+        max-width: 100%;
+    }
+}

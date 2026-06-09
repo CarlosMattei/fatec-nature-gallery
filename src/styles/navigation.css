@@ -1,0 +1,256 @@
+.topNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.topNav > * {
+    pointer-events: auto;
+}
+
+.logo {
+    width: 8.75rem;
+    padding: 0.65rem;
+    background-color: var(--background-base);
+    border-radius: 0.65rem;
+    box-shadow: 0 2px 0 rgba(185, 163, 143, 0.55);
+}
+
+.logo img {
+    width: 100%;
+}
+
+.hamburguer {
+    position: relative;
+    display: flex;
+    aspect-ratio: 1 / 1;
+    width: 3.85rem;
+    padding: 0;
+    background-color: var(--background-base);
+    border-radius: 100%;
+    cursor: pointer;
+    box-shadow:
+        inset 0 -4px 0px #c9b7a5,
+        0 2px 0 rgba(185, 163, 143, 0.45);
+    border: 0;
+    pointer-events: auto;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.hamburguer .line {
+    position: absolute;
+    left: 50%;
+    width: 52%;
+    height: 0.28rem;
+    background-color: var(--primary);
+    border-radius: 10px;
+    transform: translateX(-50%) translateY(-50%);
+    transform-origin: center;
+    transition:
+        top 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.hamburguer .line:nth-child(1) {
+    top: calc(50% - 0.62rem);
+}
+
+.hamburguer .line:nth-child(2) {
+    top: 50%;
+}
+
+.hamburguer .line:nth-child(3) {
+    top: calc(50% + 0.62rem);
+}
+
+.hamburguer--open .line:nth-child(1) {
+    top: 50%;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.hamburguer--open .line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0);
+}
+
+.hamburguer--open .line:nth-child(3) {
+    top: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.hamburguer:hover {
+    transform: translateY(-1px);
+}
+
+.hamburguer:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+.menuOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    padding: 6.15rem 1rem 1rem;
+    background: rgba(240, 224, 202, 0.96);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.6rem);
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.menuOverlay--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    height: 100vh;
+}
+
+.menuPanel {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(0, 1.2fr);
+    gap: 1.4rem;
+    align-items: stretch;
+}
+
+.menuList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-self: start;
+    padding-top: 0.15rem;
+}
+
+.menuItem {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 0.3rem 0.35rem 0.35rem;
+    border-radius: 0.16rem;
+    background: transparent;
+    text-decoration: none;
+    color: #3b302d;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    text-align: left;
+    font-size: 2rem;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+    outline: none;
+    transform: translateX(0.15rem);
+}
+
+.menuItem--active .menuItem__label {
+    background: var(--primary);
+    padding: 1rem;
+    color: var(--background-base);
+}
+
+.menuItem__label {
+    display: block;
+    font-size: 2.5rem;
+}
+
+.menuPreview {
+    min-width: 0;
+    display: flex;
+    overflow: hidden;
+    align-items: stretch;
+    border-radius: 0.7rem;
+    justify-content: stretch;
+}
+
+.menuPreview__frame {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #d9d9d9;
+    box-shadow: inset 0 0 0 1px rgba(185, 163, 143, 0.22);
+}
+
+.menuPreview__frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .hamburguer {
+        width: 3.5rem;
+    }
+
+    .logo {
+        width: 7rem;
+        padding: 8px;
+    }
+
+    .menuOverlay {
+        padding-top: 5.7rem;
+    }
+
+    .menuPanel {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .menuList {
+        gap: 0.55rem;
+    }
+
+    .menuItem {
+        font-size: 2.6rem;
+    }
+
+    .menuPreview__frame {
+        min-height: 18rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburguer {
+        width: 3rem;
+    }
+
+    .logo {
+        width: 6rem;
+        padding: 6px;
+    }
+
+    .topNav {
+        padding: 0.75rem;
+    }
+
+    .menuOverlay {
+        padding-inline: 0.75rem;
+    }
+
+    .menuItem {
+        font-size: 2.15rem;
+    }
+
+    .menuPreview__frame {
+        min-height: 14rem;
+    }
+}
