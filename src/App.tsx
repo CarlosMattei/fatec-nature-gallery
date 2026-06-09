@@ -4,7 +4,9 @@ import Map from "./components/mapView";
 import Gallery from "./pages/gallery";
 import Contact from "./pages/contact";
 import Intro from "./pages/intro";
-import heroImage from "./assets/hero.png";
+import mail from "./assets/mail.jpg";
+import map from "./assets/map.jpg";
+import photos from "./assets/photos.jpg";
 import "./styles/navigation.css";
 
 type MenuItem = {
@@ -20,27 +22,21 @@ const menuItems: MenuItem[] = [
     label: "Mapa",
     to: "/map",
     previewTitle: "Mapa",
-    previewImage: heroImage,
+    previewImage: map,
     previewPosition: "center center",
   },
   {
     label: "Galeria completa",
     to: "/gallery",
     previewTitle: "Galeria completa",
-    previewImage: heroImage,
+    previewImage: photos,
     previewPosition: "center 20%",
-  },
-  {
-    label: "Sobre o Projeto",
-    previewTitle: "Sobre o Projeto",
-    previewImage: heroImage,
-    previewPosition: "center 70%",
-  },
+  },    
   {
     label: "Contato",
     to: "/contact",
     previewTitle: "Contato",
-    previewImage: heroImage,
+    previewImage: mail,
     previewPosition: "right center",
   },
 ];
