@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FiArrowRight, FiCamera, FiImage, FiTag } from "react-icons/fi";
+import icon1 from "../assets/icon_1.svg"
+import icon2 from "../assets/icon_2.svg"
+import icon3 from "../assets/icon_3.svg"
+import { FaAngleRight } from "react-icons/fa";
 import "../styles/intro.css";
 
 const assetUrls = Object.values(
@@ -93,29 +96,23 @@ export default function Intro() {
 
         <div className="introSteps" role="list" aria-label="Etapas para usar o mapa">
           <article className="introStep" role="listitem">
-            <div className="introStep__icon">
-              <FiCamera aria-hidden="true" />
-            </div>
+              <img src={icon1} alt="Ícone 1" className="introStep__icon__image" />
             <h2>Encontre uma zona de foto</h2>
             <p>Abra o mapa e localize o ponto que deseja explorar.</p>
           </article>
 
-          <FiArrowRight className="introArrow" aria-hidden="true" />
+          <FaAngleRight className="introArrow" />
 
           <article className="introStep" role="listitem">
-            <div className="introStep__icon">
-              <FiTag aria-hidden="true" />
-            </div>
+              <img src={icon2} alt="Ícone 2" className="introStep__icon__image" />
             <h2>Clique na etiqueta</h2>
             <p>As marcações mostram onde existe conteúdo disponível.</p>
           </article>
 
-          <FiArrowRight className="introArrow" aria-hidden="true" />
+          <FaAngleRight className="introArrow" />
 
           <article className="introStep" role="listitem">
-            <div className="introStep__icon">
-              <FiImage aria-hidden="true" />
-            </div>
+              <img src={icon3} alt="Ícone 3" className="introStep__icon__image" />
             <h2>Acesse e descubra os álbuns</h2>
             <p>Veja as fotos em tela cheia e navegue pelos registros.</p>
           </article>

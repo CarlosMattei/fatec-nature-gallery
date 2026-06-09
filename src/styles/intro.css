@@ -113,14 +113,13 @@
     text-align: center;
 }
 
-.introStep__icon {
-    width: 4.5rem;
-    height: 4.5rem;
+.introStep__icon__image {
+    width: 6.4rem;
+    height: 6.4rem;
     display: grid;
     place-items: center;
     border-radius: 1rem;
     color: var(--primary);
-    background: rgba(0, 161, 126, 0.12);
 }
 
 .introStep__icon svg {
